@@ -1,10 +1,12 @@
 package com.reuterwall.akka;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
-
-import com.reuterwall.akka.RandomOrgBuffer.RandomRequest;
 
 public class Main {
 
@@ -13,7 +15,16 @@ public class Main {
 		final ActorRef randomOrgBuffer = system.actorOf(new Props(
 				RandomOrgBuffer.class), "buffer");
 
-		randomOrgBuffer.tell(new RandomRequest(10));
+		RandomOrgRandom random = new RandomOrgRandom(randomOrgBuffer);
+		List<Integer> numbers = new ArrayList<Integer>();
+		for (int i = 1; i <= 20; i++) {
+			numbers.add(i);
+		}
+
+		Collections.shuffle(numbers, random);
+		for (Integer i : numbers) {
+			System.out.print(i + ", ");
+		}
 		system.shutdown();
 	}
 }

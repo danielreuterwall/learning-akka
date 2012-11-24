@@ -19,9 +19,7 @@ public class RandomOrgBuffer extends UntypedActor {
 			if (buffer.isEmpty()) {
 				buffer.addAll(fetchRandomNumbers(50));
 			}
-			for (int count = ((RandomRequest) message).howMany(); count > 0; count--) {
-				System.out.println(buffer.remove());
-			}
+			getSender().tell(buffer.remove());
 		} else {
 			unhandled(message);
 		}
@@ -45,14 +43,5 @@ public class RandomOrgBuffer extends UntypedActor {
 	}
 
 	static class RandomRequest {
-		private int howMany;
-
-		public RandomRequest(int howMany) {
-			this.howMany = howMany;
-		}
-
-		public int howMany() {
-			return howMany;
-		}
 	}
 }
