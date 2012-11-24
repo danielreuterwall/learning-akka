@@ -22,6 +22,8 @@ public class RandomOrgBuffer extends UntypedActor {
 			for (int count = ((RandomRequest) message).howMany(); count > 0; count--) {
 				System.out.println(buffer.remove());
 			}
+		} else {
+			unhandled(message);
 		}
 	}
 
