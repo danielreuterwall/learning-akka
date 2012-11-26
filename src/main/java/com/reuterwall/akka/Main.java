@@ -25,6 +25,8 @@ public class Main {
 		for (Integer i : numbers) {
 			System.out.print(i + ", ");
 		}
+		System.out.println();
+
 		system.shutdown();
 	}
 }
