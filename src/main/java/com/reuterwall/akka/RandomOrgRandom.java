@@ -37,6 +37,7 @@ public class RandomOrgRandom extends Random {
 			return ((Integer) Await.result(future, timeout.duration()))
 					.intValue();
 		} catch (Exception e) {
+			// Not necessary to address in this sample application
 			throw new RuntimeException(e);
 		}
 	}
